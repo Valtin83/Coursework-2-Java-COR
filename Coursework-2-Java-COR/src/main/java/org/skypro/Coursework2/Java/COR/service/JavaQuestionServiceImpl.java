@@ -36,7 +36,7 @@ public class JavaQuestionServiceImpl implements QuestionService {
     @Override
     public Question getRandomQuestion() {
         if (questions.isEmpty()) {
-            throw new NoQuestionsAvailableException("Нет доступных вопросов.");
+            throw null;
         }
         int randomIndex = new Random().nextInt(questions.size());
         return questions.get(randomIndex);

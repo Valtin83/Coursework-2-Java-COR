@@ -28,6 +28,11 @@ public class JavaQuestionController {
        return questionService.removeQuestion(question, answer);
     }
 
+    @GetMapping("/random")
+    public Question getRandomQuestion() {
+        return questionService.getRandomQuestion();
+    }
+
     @GetMapping
     public List<Question> getAllQuestions() {
         return questionService.getAllQuestions();

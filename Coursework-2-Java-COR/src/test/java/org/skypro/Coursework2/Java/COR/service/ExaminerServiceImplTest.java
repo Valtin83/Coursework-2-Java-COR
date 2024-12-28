@@ -27,8 +27,8 @@ class ExaminerServiceImplTest {
     @Test
     void testGetQuestions_WithValidAmount() {
         // Создание списка вопросов для возврата
-        Question question1 = new Question("Что такое Java?", answerText);
-        Question question2 = new Question("Что такое OOP?", answerText);
+        Question question1 = new Question("Что такое Java?", "Язык программирования");
+        Question question2 = new Question("Что такое OOP?", "Объектно-ориентированное программирование");
 
         // Настраиваем мок для возврата всех вопросов
         when(questionService.getAllQuestions()).thenReturn(Arrays.asList(question1, question2));
@@ -46,7 +46,7 @@ class ExaminerServiceImplTest {
     @Test
     void testGetQuestions_WithMoreThanAvailable() {
         // Настраиваем мок для возврата меньшего числа вопросов
-        Question question1 = new Question("Что такое Java?", answerText);
+        Question question1 = new Question("Что такое Java?", "Язык программирования");
         when(questionService.getAllQuestions()).thenReturn(Arrays.asList(question1));
 
         // Ожидаем исключение, если запрашиваем больше вопросов, чем доступно
@@ -60,9 +60,9 @@ class ExaminerServiceImplTest {
     @Test
     void testGetQuestions_WithUniqueRandomQuestions() {
         // Создание вопросов
-        Question question1 = new Question("Что такое Java?", answerText);
-        Question question2 = new Question("Что такое Python?", answerText);
-        Question question3 = new Question("Что такое C++?", answerText);
+        Question question1 = new Question("Что такое Java?", "Язык программирования");
+        Question question2 = new Question("Что такое Python?", "Язык программирования");
+        Question question3 = new Question("Что такое C++?", "Язык программирования");
 
         // Настраиваем мок для возврата вопросов
         when(questionService.getAllQuestions()).thenReturn(Arrays.asList(question1, question2, question3));
