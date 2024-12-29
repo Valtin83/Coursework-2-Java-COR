@@ -1,6 +1,7 @@
 package org.skypro.Coursework2.Java.COR.service;
 
 import org.skypro.Coursework2.Java.COR.exception.NoQuestionsAvailableException;
+import org.skypro.Coursework2.Java.COR.exception.QuestionNotFoundException;
 import org.skypro.Coursework2.Java.COR.model.Question;
 import org.springframework.stereotype.Service;
 
@@ -18,28 +19,33 @@ public class JavaQuestionServiceImpl implements QuestionService {
         Question question = new Question(questionText, answerText);
         if (!questions.contains(question)) {
             questions.add(question);
+            return question;
+        } else {
+            throw new QuestionNotFoundException("Вопрос уже существует.");
         }
-        return question;
+
     }
 
     @Override
-    public Question removeQuestion(String questionText, String answerText) {
-        questions.removeIf(q -> q.getQuestion().equals(questionText) && q.getAnswer().equals(answerText));
-        return null;
+    public boolean removeQuestion(String questionText, String answerText) {
+        boolean isRemoved = questions.removeIf(q -> q.getQuestion().equals(questionText) && q.getAnswer().equals(answerText));
+        if (!isRemoved) {
+            throw new QuestionNotFoundException("Вопрос не найден.");
+        }
+        return true;
     }
 
     @Override
     public List<Question> getAllQuestions() {
-        return new ArrayList<>(questions);
+        return List.copyOf(questions);
     }
 
     @Override
     public Question getRandomQuestion() {
         if (questions.isEmpty()) {
-            throw null;
+            throw new NoQuestionsAvailableException("Нет доступных вопросов.");
         }
         int randomIndex = new Random().nextInt(questions.size());
         return questions.get(randomIndex);
-
     }
 }

@@ -1,6 +1,5 @@
 package org.skypro.Coursework2.Java.COR.service;
 
-import org.skypro.Coursework2.Java.COR.exception.QuestionNotFoundException;
 import org.skypro.Coursework2.Java.COR.model.Question;
 import org.springframework.stereotype.Service;
 

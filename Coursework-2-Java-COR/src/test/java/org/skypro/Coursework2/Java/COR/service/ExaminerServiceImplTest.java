@@ -59,7 +59,7 @@ class ExaminerServiceImplTest {
 
     @Test
     void testGetQuestions_WithUniqueRandomQuestions() {
-        // Создание вопросов
+
         Question question1 = new Question("Что такое Java?", "Язык программирования");
         Question question2 = new Question("Что такое Python?", "Язык программирования");
         Question question3 = new Question("Что такое C++?", "Язык программирования");
@@ -68,7 +68,7 @@ class ExaminerServiceImplTest {
         when(questionService.getAllQuestions()).thenReturn(Arrays.asList(question1, question2, question3));
         when(questionService.getRandomQuestion()).thenReturn(question1, question2, question3, question1, question2); // Имитация возможных повторов
 
-        // Запрашиваем 2 уникальных вопроса
+        // Запрашиваем 2 вопроса
         List<Question> questions = examinerService.getQuestions(2);
 
         assertEquals(2, questions.size());
