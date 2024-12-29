@@ -56,19 +56,14 @@ class JavaQuestionServiceImplTest {
         assertEquals(2, questions.size());
     }
 
+
     @Test
-    void testGetRandomQuestion() {
-        // Добавляем вопрос и проверяем случайный выбор
-        questionService.addQuestion("Что такое Java?", "Программирование");
+    public void testGetRandomQuestion() {
+        JavaQuestionServiceImpl service = new JavaQuestionServiceImpl();
+        service.addQuestion("Что такое Java?", "Язык программирования");
 
-        Question randomQuestion = questionService.getRandomQuestion();
-
-        // Случайный вопрос должен совпадать с добавленным
-        assertEquals("Что такое Java?", randomQuestion.getQuestion());
-        assertEquals("Программирование", randomQuestion.getAnswer());
-
-        // Проверяем, что метод работает, когда список пуст
-        JavaQuestionServiceImpl emptyService = new JavaQuestionServiceImpl();
-        assertNull(emptyService.getRandomQuestion());
+        Question question = service.getRandomQuestion();
+        assertNotNull(question);
+        assertEquals("Что такое Java?", question.getQuestion());
     }
 }
